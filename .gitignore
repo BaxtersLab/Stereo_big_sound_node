@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# No venvs in this repo
+venv/
+env/
+ENV/
