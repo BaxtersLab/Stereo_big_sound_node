@@ -151,6 +151,12 @@ def _stft_stereoizer(
 
 
 class Stereo_big_sound_node:
+	"""Stereo enhancer intended to be used at the end of a chain.
+
+	UI is a fixed 16-lane layout (lanes 0–15). The `lane0`, `lane4`, `lane10`,
+	and `lane15` inputs are text-only section headers; their values are ignored
+	by processing and exist only to keep the GUI structured.
+	"""
 	RETURN_TYPES = ("AUDIO",)
 	RETURN_NAMES = ("audio",)
 	FUNCTION = "process"
