@@ -297,7 +297,8 @@ class Stereo_big_sound_node:
 		width_amount = _clamp(float(width_amount), 0.0, 2.0)
 		dry_wet = _clamp(float(dry_wet), 0.0, 1.0)
 
-		out = np.zeros_like(wf_bct, dtype=np.float32)
+		# Always allocate stereo output regardless of input channel count.
+		out = np.zeros((wf_bct.shape[0], 2, wf_bct.shape[2]), dtype=np.float32)
 		for b in range(int(wf_bct.shape[0])):
 			ct = wf_bct[b]
 			# Ensure stereo
@@ -339,8 +340,8 @@ class Stereo_big_sound_node:
 
 			out[b, 0:2, :] = mixed
 
-		# Always return stereo (B,2,T)
-		audio_out = self._pack_audio(out[:, 0:2, :], fs, audio_dict, torch_device)
+		# out is guaranteed (B,2,T) — no slice needed
+		audio_out = self._pack_audio(out, fs, audio_dict, torch_device)
 		return (audio_out,)
 
 	def _process_doubler(

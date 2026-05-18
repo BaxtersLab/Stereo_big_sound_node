@@ -1,0 +1,2 @@
+# numpy is already present in any ComfyUI environment
+numpy
